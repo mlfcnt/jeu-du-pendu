@@ -35,15 +35,17 @@ export const Alphabet = ({
           type="alphabet"
           hasBeenUsed={guessedLetters.includes(letter)}
           onClick={() => {
+            if (!lives) return;
             const isGoodGuess = wordToGuess.includes(letter);
             if (isGoodGuess) {
               setGuessedLetters([...guessedLetters, letter]);
               return;
             } else {
-              if (lives > 0) {
+              if (lives > 1) {
                 setLives(lives - 1);
                 setGuessedLetters([...guessedLetters, letter]);
               } else {
+                setLives(lives - 1);
                 alert("Vous avez perdu !");
               }
             }
